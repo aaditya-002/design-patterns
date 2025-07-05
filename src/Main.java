@@ -1,14 +1,14 @@
-import observerPattern.observable.WeatherStationObservableImpl;
-import observerPattern.observer.DisplayObserver;
-import observerPattern.observer.MobileObserverImpl;
-import observerPattern.observer.TVObserverImpl;
+import decoratorPattern.Pizza;
+import decoratorPattern.basePizzas.MargrettaPizza;
+import decoratorPattern.decorator.ExtraCheezeDecorator;
+import decoratorPattern.decorator.ExtraToppingsDecorator;
 
 public class Main {
     public static void main(String[] args) {
-        WeatherStationObservableImpl weatherStationObservable = new WeatherStationObservableImpl();
-        DisplayObserver tvObserver = new TVObserverImpl(weatherStationObservable);
-        DisplayObserver mobileObserver = new MobileObserverImpl(weatherStationObservable);
+        Pizza pizza = new MargrettaPizza();
+        Pizza extraCheeze = new ExtraCheezeDecorator(pizza);
+        Pizza orderedPizza = new ExtraToppingsDecorator(extraCheeze);
 
-        weatherStationObservable.setData(50);
+        System.out.println(orderedPizza.cost());
     }
 }
